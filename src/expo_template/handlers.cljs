@@ -1,8 +1,8 @@
 (ns expo-template.handlers
   (:require
-    [re-frame.core :refer [reg-event-db ->interceptor]]
     [clojure.spec.alpha :as s]
-    [expo-template.db :as db :refer [app-db]]))
+    [expo-template.db :as db :refer [app-db]]
+    [re-frame.core :refer [reg-event-db ->interceptor]]))
 
 ;; -- Interceptors ----------------------------------------------------------
 ;;
@@ -15,14 +15,15 @@
     (let [explain-data (s/explain-data spec db)]
       (throw (ex-info (str "Spec check failed: " explain-data) explain-data)))))
 
+
 (def validate-spec
   (if goog.DEBUG
     (->interceptor
-        :id :validate-spec
-        :after (fn [context]
-                 (let [db (-> context :effects :db)]
-                   (check-and-throw ::db/app-db db)
-                   context)))
+      :id :validate-spec
+      :after (fn [context]
+               (let [db (-> context :effects :db)]
+                 (check-and-throw ::db/app-db db)
+                 context)))
     ->interceptor))
 
 ;; -- Handlers --------------------------------------------------------------
@@ -32,6 +33,7 @@
   [validate-spec]
   (fn [_ _]
     app-db))
+
 
 (reg-event-db
   :set-greeting

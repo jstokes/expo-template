@@ -1,8 +1,11 @@
 (ns expo-template.db
-  (:require [clojure.spec.alpha :as s]))
+  (:require
+    [clojure.spec.alpha :as s]))
 
 ;; spec of app-db
 (s/def ::greeting string?)
+
+
 (s/def ::app-db
   (s/keys :req-un [::greeting]))
 

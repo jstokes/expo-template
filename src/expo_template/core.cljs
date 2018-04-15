@@ -1,8 +1,10 @@
 (ns expo-template.core
-    (:require [reagent.core :as r :refer [atom]]
-              [re-frame.core :refer [subscribe dispatch dispatch-sync]]
-              [expo-template.handlers]
-              [expo-template.subs]))
+  (:require
+    [expo-template.handlers]
+    [expo-template.subs]
+    [re-frame.core :refer [subscribe dispatch dispatch-sync]]
+    [reagent.core :as r :refer [atom]]))
+
 
 (def ReactNative (js/require "react-native"))
 (def app-registry (.-AppRegistry ReactNative))
@@ -10,12 +12,18 @@
 (def view (r/adapt-react-class (.-View ReactNative)))
 (def image (r/adapt-react-class (.-Image ReactNative)))
 
-(defn app-root []
+(defn app-root
+  []
   (fn []
     [view {:style {:flex-direction "column" :margin 40 :align-items "center"}}
-     [text {:style {:font-size 30 :font-weight "100" :margin-bottom 20 :text-align "center"}}
-      "new world"]]))
+     [text {:style {:font-size 30
+                    :font-weight "100"
+                    :margin-bottom 20
+                    :text-align "center"}}
+      "new old world"]]))
 
-(defn init []
+
+(defn init
+  []
   (dispatch-sync [:initialize-db])
   (.registerComponent app-registry "main" #(r/reactify-component app-root)))
