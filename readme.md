@@ -1,5 +1,8 @@
 ## expo-template
 
+A collection of sample react native components in Clojurescript.
+
+
 ### Usage
 
 #### Install Expo [XDE and mobile client](https://docs.expo.io/versions/v15.0.0/introduction/installation.html)
@@ -30,13 +33,6 @@
     lein figwheel
 ```
 
-##### boot users
-``` shell
-    boot dev
-
-    ;; then input (cljs-repl) in the connected clojure repl to connect to boot cljs repl
-```
-
 #### Start Exponent server (Using `exp`)
 
 ##### Also connect to Android device
@@ -49,28 +45,4 @@
 
 ``` shell
     exp start -i --lan
-```
-
-### Add new assets or external modules
-1. `require` module:
-
-``` clj
-    (def cljs-logo (js/require "./assets/images/cljs.png"))
-    (def FontAwesome (js/require "@expo/vector-icons/FontAwesome"))
-```
-2. Reload simulator or device
-
-### Make sure you disable live reload from the Developer Menu, also turn off Hot Module Reload.
-Since Figwheel already does those.
-
-### Production build (generates js/externs.js and main.js)
-
-#### leiningen users
-``` shell
-lein prod-build
-```
-
-#### boot users
-``` shell
-boot prod
 ```
