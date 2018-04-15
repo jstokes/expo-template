@@ -1,7 +1,5 @@
 (ns expo-template.core
   (:require
-    [expo-template.handlers]
-    [expo-template.subs]
     [re-frame.core :refer [subscribe dispatch dispatch-sync]]
     [reagent.core :as r :refer [atom]]))
 
